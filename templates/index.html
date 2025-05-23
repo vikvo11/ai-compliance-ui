@@ -7,6 +7,8 @@
     <script src="{{ script.src }}"
             {% if script.backend %} data-backend="{{ script.backend }}"{% endif %}
             {% if script.stream %} data-stream="{{ script.stream }}"{% endif %}
+            {% if script.key %} data-key="{{ script.key }}"{% endif %}
+            {% if script.allowed_origin %} data-allowed-origin="{{ script.allowed_origin }}"{% endif %}
             {% if script.defer %} defer{% endif %}></script>
 
   {% endfor %}
@@ -16,11 +18,14 @@
   <form method="post">
     <input type="text" name="script_url" placeholder="Enter JS URL" required>
     <input type="text" name="backend" placeholder="data-backend (optional)">
+    <input type="text" name="key" value="MY_PARTNER_KEY" placeholder="data-key">
+    <input type="text" name="allowed_origin" value="https://client.com" placeholder="data-allowed-origin">
+    
     <label>
       <input type="checkbox" name="stream" checked> data-stream
     </label>
     <label>
-      <input type="checkbox" name="defer"> defer
+      <input type="checkbox" name="defer" checked> defer
     </label>
 
     <button type="submit">Add Script</button>

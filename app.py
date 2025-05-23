@@ -13,6 +13,8 @@ def index():
         url = request.form.get('script_url')
         backend = request.form.get('backend')
         stream = request.form.get('stream') or 'true'
+        key = request.form.get('key') or 'MY_PARTNER_KEY'
+        allowed_origin = request.form.get('allowed_origin') or 'https://client.com'
         defer = bool(request.form.get('defer'))
 
         if url:
@@ -20,6 +22,8 @@ def index():
                 'src': url,
                 'backend': backend,
                 'stream': stream,
+                'key': key,
+                'allowed_origin': allowed_origin,
                 'defer': defer
             })
 
