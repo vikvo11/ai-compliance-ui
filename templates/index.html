@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JS Loader</title>
+  {% for script in scripts %}
+    <script src="{{ script }}"></script>
+  {% endfor %}
+</head>
+<body>
+  <h1>JS Loader</h1>
+  <form method="post">
+    <input type="text" name="script_url" placeholder="Enter JS URL" required>
+    <button type="submit">Add Script</button>
+  </form>
+  <h2>Current Scripts</h2>
+  <ul>
+    {% for script in scripts %}
+      <li>
+        {{ script }}
+        <form action="{{ url_for('delete_script', script_id=loop.index0) }}" method="post" style="display:inline">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
