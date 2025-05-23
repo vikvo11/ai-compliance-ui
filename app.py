@@ -2,14 +2,27 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-scripts = []  # List to store JS URLs
+
+# In-memory list to store scripts with optional attributes
+scripts = []
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         url = request.form.get('script_url')
+        backend = request.form.get('backend')
+        stream = request.form.get('stream') or 'true'
+        defer = bool(request.form.get('defer'))
+
         if url:
-            scripts.append(url)
+            scripts.append({
+                'src': url,
+                'backend': backend,
+                'stream': stream,
+                'defer': defer
+            })
+
         return redirect(url_for('index'))
     return render_template('index.html', scripts=scripts)
 
