@@ -2,8 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+
 # In-memory list to store scripts with optional attributes
 scripts = []
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,6 +22,7 @@ def index():
                 'stream': stream,
                 'defer': defer
             })
+
         return redirect(url_for('index'))
     return render_template('index.html', scripts=scripts)
 

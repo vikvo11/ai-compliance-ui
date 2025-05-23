@@ -8,6 +8,7 @@
             {% if script.backend %} data-backend="{{ script.backend }}"{% endif %}
             {% if script.stream %} data-stream="{{ script.stream }}"{% endif %}
             {% if script.defer %} defer{% endif %}></script>
+
   {% endfor %}
 </head>
 <body>
@@ -21,6 +22,7 @@
     <label>
       <input type="checkbox" name="defer"> defer
     </label>
+
     <button type="submit">Add Script</button>
   </form>
   <h2>Current Scripts</h2>
